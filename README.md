@@ -95,6 +95,11 @@ Matchly/
 
 ## 💡 Demonstrated Capabilities
 
+### Website navigation
+
+The homepage at `/` is a responsive Matchly landing page with an interactive sample match. The original invoice application remains available at `/dashboard`, linked from the homepage. Both the Node and Python servers use the same pages. The landing page is a single HTML file with inline CSS and JavaScript; Google Fonts are its only external visual dependency.
+
+
 1. **Dashboard & Financial Controls:** Real-time STP match rate, Money Protected ($3,070+ saved from overbilling), and AP Aging breakdown.
 2. **AI Document Review:** Split-screen preview showing document mockup with bounding box overlays on left, and editable table with confidence pills on right.
 3. **3-Way Line Reconciliation:** Side-by-side comparative table (PO vs GRN vs Invoice) with highlighted variance diffs.

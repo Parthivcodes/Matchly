@@ -61,6 +61,10 @@ def serve_index():
         return FileResponse(index_path)
     return {"message": "Matchly API is running. Frontend static directory not found."}
 
+@app.get("/dashboard")
+def serve_dashboard():
+    return FileResponse(os.path.join(frontend_dir, "dashboard.html"))
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("backend.app.main:app", host="127.0.0.1", port=8000, reload=True)

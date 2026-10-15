@@ -40,6 +40,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(frontendDir, 'index.html'));
 });
 
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(frontendDir, 'dashboard.html'));
+});
+
 // Start Server
 async function startServer() {
   try {
