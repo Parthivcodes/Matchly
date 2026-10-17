@@ -59,6 +59,21 @@ async function refreshDashboard() {
   try {
     // 1A. Fetch KPIs
     const kpiRes = await fetch(`${API_BASE}/analytics/dashboard`);
+    let status = document.getElementById('connection-status');
+    if (!kpiRes.ok) {
+      if (!status) {
+        status = document.createElement('p');
+        status.id = 'connection-status';
+        status.setAttribute('role', 'status');
+        status.style.cssText = 'padding:16px;margin:16px 0;border:1px solid currentColor;border-radius:14px;line-height:1.5';
+        document.getElementById('tab-dashboard').prepend(status);
+      }
+      status.textContent = 'The website is live. Dashboard data will be available once the database is connected.';
+      const table = document.getElementById('dashboard-invoices-tbody');
+      if (table) table.innerHTML = '<tr><td colspan="7">Database connection pending.</td></tr>';
+      return;
+    }
+    if (status) status.remove();
     if (kpiRes.ok) {
       const kpis = await kpiRes.json();
       document.getElementById('kpi-stp').textContent = `${kpis.stp_rate_pct}%`;
