@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-package-lock.json
 
 # Environment variables
 .env
@@ -28,3 +27,6 @@ Thumbs.db
 
 # Build artifacts
 .deck-build/
+
+public/
+.vercel/

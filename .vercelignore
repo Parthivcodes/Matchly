@@ -1,0 +1,8 @@
+backend/
+deliverables/
+.deck-build/
+*.db
+*.sqlite*
+.env*
+server/tests/
+.git/

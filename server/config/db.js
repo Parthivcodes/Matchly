@@ -2,14 +2,20 @@ const mongoose = require('mongoose');
 
 let mongoServer = null;
 
-async function connectDB() {
+let connectionPromise = null;
+
+async function openConnection() {
   const uri = process.env.MONGODB_URI;
 
   if (uri) {
-    console.log(`Connecting to external MongoDB at ${uri}...`);
-    await mongoose.connect(uri);
+    console.log('Connecting to external MongoDB...');
+    await mongoose.connect(uri, { serverSelectionTimeoutMS: 8000, maxPoolSize: 5 });
     console.log('MongoDB connected successfully.');
     return;
+  }
+
+  if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+    throw new Error('MONGODB_URI is required for deployed environments');
   }
 
   // Fallback to local MongoDB or MongoMemoryServer
@@ -29,7 +35,17 @@ async function connectDB() {
   }
 }
 
+async function connectDB() {
+  if (mongoose.connection.readyState === 1) return;
+  if (!connectionPromise) connectionPromise = openConnection().catch(error => {
+    connectionPromise = null;
+    throw error;
+  });
+  return connectionPromise;
+}
+
 async function closeDB() {
+  connectionPromise = null;
   await mongoose.disconnect();
   if (mongoServer) {
     await mongoServer.stop();

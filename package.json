@@ -1,18 +1,25 @@
 {
   "name": "matchly-mern",
   "version": "1.0.0",
-  "description": "Matchly — 3-Way Invoice Matching SaaS (MERN Stack: MongoDB, Express.js, React, Node.js)",
+  "description": "Matchly \u2014 3-Way Invoice Matching SaaS (MERN Stack: MongoDB, Express.js, React, Node.js)",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
     "dev": "node server/server.js",
-    "test": "node --test server/tests/matchingEngine.test.js"
+    "test": "node --test server/tests/*.test.js",
+    "build": "node scripts/build.js",
+    "seed": "node scripts/seed.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "mongodb-memory-server": "^11.3.0",
     "mongoose": "^8.9.5"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^11.3.0"
   }
 }

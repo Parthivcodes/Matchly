@@ -106,3 +106,12 @@ The homepage at `/` is a responsive Matchly landing page with an interactive sam
 4. **Exception Management Queue:** Reason badges, 3-day SLA countdown, and audit-logged override modals.
 5. **Dock Receiving Screen:** 2-click web receiving for dock staff without requiring an ERP license.
 6. **Accounting CSV Export:** 1-click export formatted for QuickBooks Online, Xero, and Tally Prime.
+
+
+## Vercel deployment
+
+Import this repository into Vercel with the Express preset, root directory `./`, and build command `npm run build`. Node 22 is selected by package.json. Landing page: `/`; dashboard: `/dashboard`; health: `/api/health`. Static assets are copied to `public/` for the CDN.
+
+Set `MONGODB_URI` to a hosted MongoDB connection string in Vercel environment settings, then redeploy. Never commit the URI. Local/in-memory MongoDB is development-only. API requests return 503 if the hosted database is missing; static pages remain accessible. Connections are reused across warm requests.
+
+For a new demonstration database, configure the same URI locally and run `npm run seed` once before use. Deployments never seed or overwrite data automatically. `npm test` checks matching and deployment behavior. This project currently uses demonstration authentication; use sample data only until real authentication and tenant authorization are implemented.
