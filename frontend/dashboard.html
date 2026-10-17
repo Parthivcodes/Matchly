@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0F1115">
+  <meta name="theme-color" content="#242135">
   <title>Matchly — Workspace Dashboard</title>
   <meta name="description" content="Matchly workspace: automated 3-way invoice matching reconciling POs, Goods Receipts (GRNs), and Invoices before accounting export.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
   <a class="skip-link" href="#workspace">Skip to workspace</a>
 
-  <!-- Sidebar Navigation (Ink & Orange Theme) -->
+  <!-- Sidebar Navigation -->
   <aside class="sidebar">
     <div class="brand">
       <a class="brand-logo" href="/" aria-label="Matchly home">
@@ -26,7 +26,7 @@
       <div class="brand-text">
         <h1>Matchly</h1>
       </div>
-      <span class="brand-badge">[ Workspace ]</span>
+      <span class="brand-badge">workspace</span>
       <button class="workspace-menu" id="workspace-menu-btn" aria-expanded="false" aria-controls="workspace-nav">Menu</button>
     </div>
 
@@ -95,9 +95,9 @@
         <!-- Hero Infographic Section (1:1 with front page hero) -->
         <header class="workspace-hero">
           <div class="hero-copy">
-            <span class="eyebrow">[ Your daily reality check ]</span>
-            <h2>Clear books.<br><span>Clear head.</span></h2>
-            <p>What you ordered. What arrived. What you owe. Every payment decision has something solid to stand on.</p>
+            <span class="eyebrow">YOUR FINANCE WORKSPACE</span>
+            <h2>Every invoice, in perspective.</h2>
+            <p>A calmer place to compare documents, review exceptions, and keep your next payment moving.</p>
             <div style="display: flex; gap: 12px; margin-top: 6px;">
               <button class="btn btn-primary" onclick="switchTab('tab-upload')">Bring in an invoice <span aria-hidden="true">↗</span></button>
               <button class="btn btn-secondary" onclick="switchTab('tab-match')">Review 3-way match <span aria-hidden="true">↗</span></button>
@@ -115,30 +115,31 @@
               </g>
               <g transform="translate(66 72) rotate(-12 140 160)">
                 <rect width="230" height="288" rx="14" fill="#8A8F98"/>
-                <text x="24" y="42" font-family="DM Sans,sans-serif" font-size="13" fill="#0F1115">01 / PURCHASE ORDER</text>
+                <text x="24" y="42" font-family="DM Sans,sans-serif" font-size="13" fill="#242135">01 / PURCHASE ORDER</text>
               </g>
               <g transform="translate(122 104) rotate(9 120 150)">
                 <rect width="230" height="288" rx="14" fill="#c7c8cc"/>
-                <text x="24" y="42" font-family="DM Sans,sans-serif" font-size="13" fill="#0F1115">02 / GOODS RECEIPT</text>
+                <text x="24" y="42" font-family="DM Sans,sans-serif" font-size="13" fill="#242135">02 / GOODS RECEIPT</text>
               </g>
               <g transform="translate(108 160)">
-                <rect width="244" height="250" rx="14" fill="#F3EDE4"/>
-                <text x="24" y="40" font-family="DM Sans,sans-serif" font-size="13" fill="#0F1115">03 / INVOICE</text>
+                <rect width="244" height="250" rx="14" fill="#FFFFFF"/>
+                <text x="24" y="40" font-family="DM Sans,sans-serif" font-size="13" fill="#242135">03 / INVOICE</text>
                 <path d="M24 64h196M24 90h120M24 108h88M24 166h196" stroke="#8A8F98" stroke-width="2"/>
-                <text x="24" y="146" font-family="Syne,sans-serif" font-size="32" font-weight="800" fill="#0F1115">100 / 100</text>
-                <text x="24" y="204" font-family="DM Sans,sans-serif" font-size="13" fill="#0F1115">SAMPLE: EXACT MATCH</text>
-                <circle cx="213" cy="202" r="13" fill="#FF5A36"/>
-                <path d="m207 202 4 4 8-9" fill="none" stroke="#0F1115" stroke-width="2"/>
+                <text x="24" y="146" font-family="DM Sans,sans-serif" font-size="32" font-weight="800" fill="#242135">100 / 100</text>
+                <text x="24" y="204" font-family="DM Sans,sans-serif" font-size="13" fill="#242135">SAMPLE: EXACT MATCH</text>
+                <circle cx="213" cy="202" r="13" fill="#7652D9"/>
+                <path d="m207 202 4 4 8-9" fill="none" stroke="#242135" stroke-width="2"/>
               </g>
             </svg>
             <figcaption class="art-caption">Three documents. One clearer decision.</figcaption>
           </figure>
+          <div class="workspace-status">Your workspace overview</div>
         </header>
 
         <!-- KPI Cards -->
         <div class="section-heading">
-          <span class="eyebrow">[ The numbers at a glance ]</span>
-          <span class="demo-note">Apex Supply Chain Corp · Live match telemetry</span>
+          <span class="eyebrow">The numbers at a glance</span>
+          <span class="demo-note">Apex Supply Chain Corp · Sample workspace · database connection pending</span>
         </div>
         <div class="kpi-grid">
           <div class="kpi-card">
@@ -180,8 +181,8 @@
 
         <!-- The 4 Core Front-End Workflow Infographics (Exact match to index.html) -->
         <div class="section-heading">
-          <h3>Follow the paperwork.</h3>
-          <span class="eyebrow">[ Core 4-step workflow ]</span>
+          <h3>Keep work moving</h3>
+          <span class="eyebrow">YOUR NEXT STEP</span>
         </div>
         <div class="workflow-grid">
           <!-- Infographic 1: The Three-Way Check -->
@@ -189,12 +190,12 @@
             <div class="workflow-art thumb-one">
               <svg viewBox="0 0 480 280" role="img" aria-labelledby="wf-one-title">
                 <title id="wf-one-title">Three sample document columns with matching quantities</title>
-                <g fill="#F3EDE4">
+                <g fill="#FFFFFF">
                   <rect x="32" y="32" width="128" height="216" rx="14"/>
                   <rect x="176" y="32" width="128" height="216" rx="14"/>
                   <rect x="320" y="32" width="128" height="216" rx="14"/>
                 </g>
-                <g fill="#0F1115" font-family="DM Sans,sans-serif" text-anchor="middle">
+                <g fill="#242135" font-family="DM Sans,sans-serif" text-anchor="middle">
                   <text x="96" y="72" font-size="14" font-weight="700">ORDERED</text>
                   <text x="240" y="72" font-size="14" font-weight="700">RECEIVED</text>
                   <text x="384" y="72" font-size="14" font-weight="700">BILLED</text>
@@ -225,17 +226,17 @@
             <div class="workflow-art thumb-two">
               <svg viewBox="0 0 480 280" role="img" aria-labelledby="wf-two-title">
                 <title id="wf-two-title">A sample discrepancy showing 60 units billed and 40 available</title>
-                <rect x="48" y="40" width="384" height="200" rx="14" fill="#F3EDE4"/>
-                <g font-family="DM Sans,sans-serif" fill="#0F1115">
+                <rect x="48" y="40" width="384" height="200" rx="14" fill="#FFFFFF"/>
+                <g font-family="DM Sans,sans-serif" fill="#242135">
                   <text x="72" y="80" font-size="13" font-weight="700">SAMPLE / QUANTITY EXCEPTION</text>
                   <text x="72" y="146" font-size="46" font-weight="800">60</text>
                   <text x="246" y="146" font-size="46" font-weight="800">40</text>
                   <text x="72" y="176" font-size="13" font-weight="600">BILLED</text>
                   <text x="246" y="176" font-size="13" font-weight="600">AVAILABLE</text>
-                  <text x="72" y="214" font-size="13" fill="#FF5A36" font-weight="700">20 units need a closer look</text>
+                  <text x="72" y="214" font-size="13" fill="#7652D9" font-weight="700">20 units need a closer look</text>
                 </g>
                 <path d="M212 106v64" stroke="#8A8F98" stroke-width="2"/>
-                <circle cx="392" cy="76" r="10" fill="#FF5A36"/>
+                <circle cx="392" cy="76" r="10" fill="#7652D9"/>
               </svg>
             </div>
             <span class="workflow-caption">
@@ -252,11 +253,11 @@
             <div class="workflow-art thumb-three">
               <svg viewBox="0 0 480 280" role="img" aria-labelledby="wf-three-title">
                 <title id="wf-three-title">Two sample deliveries of 40 and 60 units adding to 100</title>
-                <g fill="none" stroke="#0F1115" stroke-width="2.5">
+                <g fill="none" stroke="#242135" stroke-width="2.5">
                   <path d="m64 104 72-40 72 40v84l-72 40-72-40Zm0 0 72 40 72-40m-72 40v84M100 84l72 40"/>
                   <path d="m272 104 72-40 72 40v84l-72 40-72-40Zm0 0 72 40 72-40m-72 40v84M308 84l72 40"/>
                 </g>
-                <g fill="#0F1115" font-family="DM Sans,sans-serif" font-size="22" font-weight="800" text-anchor="middle">
+                <g fill="#242135" font-family="DM Sans,sans-serif" font-size="22" font-weight="800" text-anchor="middle">
                   <text x="136" y="264">40 UNITS</text>
                   <text x="344" y="264">60 UNITS</text>
                   <text x="240" y="152" font-size="28">+</text>
@@ -277,12 +278,12 @@
             <div class="workflow-art thumb-four">
               <svg viewBox="0 0 480 280" role="img" aria-labelledby="wf-four-title">
                 <title id="wf-four-title">An abstract CSV document for accounting export</title>
-                <rect x="112" y="24" width="256" height="232" rx="14" fill="#F3EDE4"/>
-                <text x="140" y="88" font-family="Syne,sans-serif" font-size="48" font-weight="800" fill="#0F1115">.CSV</text>
+                <rect x="112" y="24" width="256" height="232" rx="14" fill="#FFFFFF"/>
+                <text x="140" y="88" font-family="DM Sans,sans-serif" font-size="48" font-weight="800" fill="#242135">.CSV</text>
                 <g fill="none" stroke="#8A8F98" stroke-width="2">
                   <path d="M140 120h200M140 152h200M140 184h200M200 120v96M280 120v96"/>
                 </g>
-                <path d="M328 192v40m-16-16 16 16 16-16" fill="none" stroke="#0F1115" stroke-width="4"/>
+                <path d="M328 192v40m-16-16 16 16 16-16" fill="none" stroke="#242135" stroke-width="4"/>
               </svg>
             </div>
             <span class="workflow-caption">
@@ -431,7 +432,7 @@
               <!-- Visual Simulated PDF -->
               <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #E2E8F0; padding-bottom: 16px; margin-bottom: 20px;">
                 <div>
-                  <h2 id="doc-vendor-name" style="color: #0F1115; font-size: 20px; font-weight: 800;">Acme Industrial Supplies</h2>
+                  <h2 id="doc-vendor-name" style="color: #242135; font-size: 20px; font-weight: 800;">Acme Industrial Supplies</h2>
                   <p style="color: #64748B; font-size: 12px;">Tax ID: US-EIN-1299401 | 100 Industrial Parkway, OH</p>
                 </div>
                 <div style="text-align: right;">
@@ -465,7 +466,7 @@
               </table>
 
               <div style="border-top: 2px solid #E2E8F0; padding-top: 12px; text-align: right; font-size: 14px;">
-                <strong>Grand Total: <span id="doc-grand-total" style="color: #0F1115; font-size: 17px; font-weight: 800;">$600.00</span></strong>
+                <strong>Grand Total: <span id="doc-grand-total" style="color: #242135; font-size: 17px; font-weight: 800;">$600.00</span></strong>
               </div>
 
               <!-- Interactive Simulated Bounding Box -->
@@ -520,12 +521,12 @@
         <div class="infographic-banner">
           <div class="banner-art thumb-one">
             <svg viewBox="0 0 480 280" role="img">
-              <g fill="#F3EDE4">
+              <g fill="#FFFFFF">
                 <rect x="32" y="32" width="128" height="216" rx="14"/>
                 <rect x="176" y="32" width="128" height="216" rx="14"/>
                 <rect x="320" y="32" width="128" height="216" rx="14"/>
               </g>
-              <g fill="#0F1115" font-family="DM Sans,sans-serif" text-anchor="middle">
+              <g fill="#242135" font-family="DM Sans,sans-serif" text-anchor="middle">
                 <text x="96" y="72" font-size="14" font-weight="700">ORDERED</text>
                 <text x="240" y="72" font-size="14" font-weight="700">RECEIVED</text>
                 <text x="384" y="72" font-size="14" font-weight="700">BILLED</text>
@@ -616,17 +617,17 @@
         <div class="infographic-banner">
           <div class="banner-art thumb-two">
             <svg viewBox="0 0 480 280" role="img">
-              <rect x="48" y="40" width="384" height="200" rx="14" fill="#F3EDE4"/>
-              <g font-family="DM Sans,sans-serif" fill="#0F1115">
+              <rect x="48" y="40" width="384" height="200" rx="14" fill="#FFFFFF"/>
+              <g font-family="DM Sans,sans-serif" fill="#242135">
                 <text x="72" y="80" font-size="13" font-weight="700">SAMPLE / QUANTITY EXCEPTION</text>
                 <text x="72" y="146" font-size="46" font-weight="800">60</text>
                 <text x="246" y="146" font-size="46" font-weight="800">40</text>
                 <text x="72" y="176" font-size="13" font-weight="600">BILLED</text>
                 <text x="246" y="176" font-size="13" font-weight="600">AVAILABLE</text>
-                <text x="72" y="214" font-size="13" fill="#FF5A36" font-weight="700">20 units need a closer look</text>
+                <text x="72" y="214" font-size="13" fill="#7652D9" font-weight="700">20 units need a closer look</text>
               </g>
               <path d="M212 106v64" stroke="#8A8F98" stroke-width="2"/>
-              <circle cx="392" cy="76" r="10" fill="#FF5A36"/>
+              <circle cx="392" cy="76" r="10" fill="#7652D9"/>
             </svg>
           </div>
           <div class="banner-content">
@@ -685,11 +686,11 @@
         <div class="infographic-banner">
           <div class="banner-art thumb-three">
             <svg viewBox="0 0 480 280" role="img">
-              <g fill="none" stroke="#0F1115" stroke-width="2.5">
+              <g fill="none" stroke="#242135" stroke-width="2.5">
                 <path d="m64 104 72-40 72 40v84l-72 40-72-40Zm0 0 72 40 72-40m-72 40v84M100 84l72 40"/>
                 <path d="m272 104 72-40 72 40v84l-72 40-72-40Zm0 0 72 40 72-40m-72 40v84M308 84l72 40"/>
               </g>
-              <g fill="#0F1115" font-family="DM Sans,sans-serif" font-size="22" font-weight="800" text-anchor="middle">
+              <g fill="#242135" font-family="DM Sans,sans-serif" font-size="22" font-weight="800" text-anchor="middle">
                 <text x="136" y="264">40 UNITS</text>
                 <text x="344" y="264">60 UNITS</text>
                 <text x="240" y="152" font-size="28">+</text>
@@ -787,12 +788,12 @@
         <div class="infographic-banner">
           <div class="banner-art thumb-four">
             <svg viewBox="0 0 480 280" role="img">
-              <rect x="112" y="24" width="256" height="232" rx="14" fill="#F3EDE4"/>
-              <text x="140" y="88" font-family="Syne,sans-serif" font-size="48" font-weight="800" fill="#0F1115">.CSV</text>
+              <rect x="112" y="24" width="256" height="232" rx="14" fill="#FFFFFF"/>
+              <text x="140" y="88" font-family="DM Sans,sans-serif" font-size="48" font-weight="800" fill="#242135">.CSV</text>
               <g fill="none" stroke="#8A8F98" stroke-width="2">
                 <path d="M140 120h200M140 152h200M140 184h200M200 120v96M280 120v96"/>
               </g>
-              <path d="M328 192v40m-16-16 16 16 16-16" fill="none" stroke="#0F1115" stroke-width="4"/>
+              <path d="M328 192v40m-16-16 16 16 16-16" fill="none" stroke="#242135" stroke-width="4"/>
             </svg>
           </div>
           <div class="banner-content">
