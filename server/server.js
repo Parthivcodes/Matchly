@@ -4,7 +4,7 @@ const { connectDB } = require('./config/db');
 const { seedMernDatabase } = require('./seed');
 async function startServer() {
   await connectDB();
-  if (process.env.SEED_DEMO_DATA !== 'false') await seedMernDatabase();
+  if (process.env.SEED_DEMO_DATA === 'true') await seedMernDatabase();
   const port = process.env.PORT || 5000;
   return app.listen(port, () => console.log(`Matchly running on http://127.0.0.1:${port}`));
 }
