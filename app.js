@@ -13,6 +13,7 @@ const exceptionRoutes = require('./server/routes/exceptions');
 const vendorRoutes = require('./server/routes/vendors');
 const analyticsRoutes = require('./server/routes/analytics');
 const exportRoutes = require('./server/routes/exports');
+const databaseRoutes = require('./server/routes/database');
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use('/api/v1/exceptions', exceptionRoutes);
 app.use('/api/v1/vendors', vendorRoutes);
 app.use('/api/v1/analytics', analyticsRoutes);
 app.use('/api/v1/exports', exportRoutes);
+app.use('/api/v1/database', databaseRoutes);
 
 // Static frontend serving
 const frontendDir = path.join(__dirname, 'frontend');

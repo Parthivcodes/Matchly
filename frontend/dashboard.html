@@ -44,7 +44,7 @@
         <i class="fa-solid fa-scale-balanced"></i> 3-Way Match
       </button></li>
       <li><button type="button" class="nav-link" data-tab="tab-exceptions">
-        <i class="fa-solid fa-triangle-exclamation"></i> Exceptions <span id="badge-exc-count" class="badge badge-exception" style="margin-left: auto; font-size: 11px;">2</span>
+        <i class="fa-solid fa-triangle-exclamation"></i> Exceptions <span id="badge-exc-count" class="badge badge-exception" style="margin-left: auto; font-size: 11px;">0</span>
       </button></li>
       <li><button type="button" class="nav-link" data-tab="tab-warehouse">
         <i class="fa-solid fa-warehouse"></i> Dock Receiving
@@ -58,10 +58,10 @@
     </ul>
 
     <div class="user-badge">
-      <div class="user-avatar">SJ</div>
+      <div class="user-avatar">FW</div>
       <div class="user-info">
-        <div class="user-name">Sarah Jenkins</div>
-        <div class="user-role">Finance Controller</div>
+        <div class="user-name">Finance Workspace</div>
+        <div class="user-role">Workspace Member</div>
       </div>
     </div>
   </aside>
@@ -72,18 +72,19 @@
     <header class="topbar">
       <div class="topbar-title">
         <h2 id="page-title">Overview</h2>
-        <span class="badge badge-tolerance" style="margin-left: 8px;">Apex Supply Chain Corp</span>
+        <span class="badge badge-tolerance" style="margin-left: 8px;">Live Workspace</span>
       </div>
 
       <div style="display: flex; align-items: center; gap: 16px;">
         <a class="home-link" href="/"><i class="fa-solid fa-arrow-left" style="font-size: 11px;"></i> Back to website</a>
         <div class="quota-indicator">
-          <span>Invoices: <strong>84 / 1,200</strong></span>
+          <span>Invoices: <strong>0 / 1,200</strong></span>
           <div class="quota-bar">
-            <div class="quota-progress" style="width: 7%;"></div>
+            <div class="quota-progress" style="width: 0%;"></div>
           </div>
           <span style="color: var(--accent); font-weight: 700;">Growth Plan</span>
         </div>
+        <button id="btn-clear-db" class="btn btn-secondary btn-sm" onclick="clearDatabaseData()" title="Purge all static/demo records from database"><i class="fa-solid fa-trash-can"></i> Clear Data</button>
         <button id="btn-quick-upload" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Upload Invoice</button>
       </div>
     </header>
@@ -147,7 +148,7 @@
               <span class="kpi-title">Auto-Match STP Rate</span>
               <div class="kpi-icon icon-emerald"><i class="fa-solid fa-bolt"></i></div>
             </div>
-            <div class="kpi-value highlight-green" id="kpi-stp">78.5%</div>
+            <div class="kpi-value highlight-green" id="kpi-stp">0.0%</div>
             <div class="kpi-subtext">Straight-through zero-touch target: 75%</div>
           </div>
 
@@ -156,7 +157,7 @@
               <span class="kpi-title">Money Protected</span>
               <div class="kpi-icon icon-blue"><i class="fa-solid fa-shield-halved"></i></div>
             </div>
-            <div class="kpi-value" id="kpi-money-saved" style="color: var(--accent);">$3,070.00</div>
+            <div class="kpi-value" id="kpi-money-saved" style="color: var(--accent);">$0.00</div>
             <div class="kpi-subtext">Overbilling & double billing stopped</div>
           </div>
 
@@ -165,7 +166,7 @@
               <span class="kpi-title">Open Exceptions</span>
               <div class="kpi-icon icon-rose"><i class="fa-solid fa-circle-exclamation"></i></div>
             </div>
-            <div class="kpi-value highlight-rose" id="kpi-open-exceptions">2</div>
+            <div class="kpi-value highlight-rose" id="kpi-open-exceptions">0</div>
             <div class="kpi-subtext"><span class="highlight-amber">0</span> breaching 3-day SLA</div>
           </div>
 
@@ -174,7 +175,7 @@
               <span class="kpi-title">Avg Invoice Cycle</span>
               <div class="kpi-icon icon-amber"><i class="fa-solid fa-stopwatch"></i></div>
             </div>
-            <div class="kpi-value">1.4 min</div>
+            <div class="kpi-value">--</div>
             <div class="kpi-subtext">From dock upload to approved export</div>
           </div>
         </div>
@@ -305,14 +306,14 @@
             </div>
             <div class="funnel-container">
               <div class="funnel-bar">
-                <div id="funnel-matched" class="funnel-segment seg-matched" style="width: 33.3%;"></div>
+                <div id="funnel-matched" class="funnel-segment seg-matched" style="width: 0%;"></div>
                 <div id="funnel-tolerance" class="funnel-segment seg-tol" style="width: 0%;"></div>
-                <div id="funnel-exception" class="funnel-segment seg-exc" style="width: 66.7%;"></div>
+                <div id="funnel-exception" class="funnel-segment seg-exc" style="width: 0%;"></div>
               </div>
               <div class="funnel-legend">
                 <div class="legend-item">
                   <div class="legend-dot" style="background: var(--accent-emerald);"></div>
-                  <span>Matched Exact: <strong id="funnel-matched-count">1</strong></span>
+                  <span>Matched Exact: <strong id="funnel-matched-count">0</strong></span>
                 </div>
                 <div class="legend-item">
                   <div class="legend-dot" style="background: var(--accent-amber);"></div>
@@ -320,7 +321,7 @@
                 </div>
                 <div class="legend-item">
                   <div class="legend-dot" style="background: var(--accent);"></div>
-                  <span>Exceptions Flagged: <strong id="funnel-exception-count">2</strong></span>
+                  <span>Exceptions Flagged: <strong id="funnel-exception-count">0</strong></span>
                 </div>
               </div>
             </div>
@@ -333,15 +334,15 @@
             <div style="display: flex; flex-direction: column; gap: 14px;">
               <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13.5px;">
                 <span style="color: var(--text-secondary);"><i class="fa-solid fa-clock" style="margin-right: 6px; color: var(--accent);"></i> 0 to 2 Days</span>
-                <span class="badge badge-matched">3 Invoices</span>
+                <span id="aging-0-2" class="badge badge-matched">0 Invoices</span>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13.5px;">
                 <span style="color: var(--text-secondary);"><i class="fa-solid fa-clock" style="margin-right: 6px; color: var(--muted);"></i> 3 to 7 Days</span>
-                <span class="badge badge-open">0 Invoices</span>
+                <span id="aging-3-7" class="badge badge-open">0 Invoices</span>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13.5px;">
                 <span style="color: var(--text-secondary);"><i class="fa-solid fa-triangle-exclamation" style="margin-right: 6px; color: var(--accent);"></i> &gt; 7 Days (Critical)</span>
-                <span class="badge badge-exception">0 Invoices</span>
+                <span id="aging-over-7" class="badge badge-exception">0 Invoices</span>
               </div>
             </div>
           </div>
@@ -413,11 +414,11 @@
       <section id="tab-review" class="tab-pane">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
           <div>
-            <h3 id="review-inv-title" style="font-size: 20px; font-weight: 800;">Invoice #INV-9821 Review</h3>
+            <h3 id="review-inv-title" style="font-size: 20px; font-weight: 800;">Invoice Review</h3>
             <p style="color: var(--text-secondary); font-size: 13.5px;">Verify AI-extracted fields against source document before running 3-way reconciliation.</p>
           </div>
           <div style="display: flex; gap: 12px;">
-            <button id="btn-run-match-from-review" class="btn btn-primary"><i class="fa-solid fa-play"></i> Run 3-Way Match</button>
+            <button id="btn-run-match-from-review" class="btn btn-primary" disabled><i class="fa-solid fa-play"></i> Run 3-Way Match</button>
           </div>
         </div>
 
@@ -432,21 +433,21 @@
               <!-- Visual Simulated PDF -->
               <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #E2E8F0; padding-bottom: 16px; margin-bottom: 20px;">
                 <div>
-                  <h2 id="doc-vendor-name" style="color: #242135; font-size: 20px; font-weight: 800;">Acme Industrial Supplies</h2>
-                  <p style="color: #64748B; font-size: 12px;">Tax ID: US-EIN-1299401 | 100 Industrial Parkway, OH</p>
+                  <h2 id="doc-vendor-name" style="color: #242135; font-size: 20px; font-weight: 800;">No Invoice Loaded</h2>
+                  <p id="doc-vendor-sub" style="color: #64748B; font-size: 12px;">Upload or select an invoice to view document preview</p>
                 </div>
                 <div style="text-align: right;">
-                  <h3 id="doc-inv-no" style="font-size: 18px; color: var(--accent); font-weight: 800;">INV-9821</h3>
-                  <p id="doc-date" style="color: #64748B; font-size: 12px;">Date: March 15, 2026</p>
+                  <h3 id="doc-inv-no" style="font-size: 18px; color: var(--accent); font-weight: 800;">--</h3>
+                  <p id="doc-date" style="color: #64748B; font-size: 12px;">Date: --</p>
                 </div>
               </div>
 
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; font-size: 12px;">
                 <div style="background: #F8FAFC; padding: 10px; border-radius: 6px; border: 1px solid #E2E8F0;">
-                  <strong>PO Reference:</strong> <span id="doc-po-ref" style="color: var(--ink); font-weight: 700;">PO-2026-001</span>
+                  <strong>PO Reference:</strong> <span id="doc-po-ref" style="color: var(--ink); font-weight: 700;">--</span>
                 </div>
                 <div style="background: #F8FAFC; padding: 10px; border-radius: 6px; border: 1px solid #E2E8F0;">
-                  <strong>Payment Terms:</strong> Net 30 Days
+                  <strong>Payment Terms:</strong> --
                 </div>
               </div>
 
@@ -461,16 +462,16 @@
                   </tr>
                 </thead>
                 <tbody id="doc-lines-tbody">
-                  <!-- Simulated Lines -->
+                  <tr><td colspan="4" style="text-align: center; color: #94A3B8; padding: 16px;">No document lines loaded.</td></tr>
                 </tbody>
               </table>
 
               <div style="border-top: 2px solid #E2E8F0; padding-top: 12px; text-align: right; font-size: 14px;">
-                <strong>Grand Total: <span id="doc-grand-total" style="color: #242135; font-size: 17px; font-weight: 800;">$600.00</span></strong>
+                <strong>Grand Total: <span id="doc-grand-total" style="color: #242135; font-size: 17px; font-weight: 800;">$0.00</span></strong>
               </div>
 
               <!-- Interactive Simulated Bounding Box -->
-              <div id="active-bbox" class="bbox-highlight" style="top: 145px; left: 24px; width: 92%; height: 34px;"></div>
+              <div id="active-bbox" class="bbox-highlight" style="display: none;"></div>
             </div>
           </div>
 
@@ -478,11 +479,11 @@
           <div class="review-editor-panel">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
               <h4 style="font-size: 16px; font-weight: 800;">Extracted Line Items</h4>
-              <span id="extraction-overall-conf" class="confidence-pill confidence-high">96% High Confidence</span>
+              <span id="extraction-overall-conf" class="confidence-pill confidence-low">--</span>
             </div>
 
             <!-- Arithmetic Check Banner -->
-            <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-sm); padding: 10px 14px; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 600; color: #047857;">
+            <div id="arithmetic-check-banner" style="display: none; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-sm); padding: 10px 14px; margin-bottom: 18px; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 600; color: #047857;">
               <i class="fa-solid fa-circle-check" style="color: #059669; font-size: 16px;"></i>
               <span>Arithmetic Check Passed: &Sigma;(Lines) = Subtotal = Grand Total</span>
             </div>
@@ -499,7 +500,7 @@
                   </tr>
                 </thead>
                 <tbody id="review-lines-tbody">
-                  <!-- Dynamically populated lines -->
+                  <tr><td colspan="5" style="text-align: center; color: var(--text-muted); padding: 20px;">No lines to display. Upload an invoice to extract lines.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -507,7 +508,7 @@
             <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;">
               <div>
                 <span style="font-size: 13px; color: var(--text-muted); font-weight: 600;">Grand Total:</span>
-                <span id="review-grand-total" style="font-size: 20px; font-weight: 800; margin-left: 8px; color: var(--ink);">$600.00</span>
+                <span id="review-grand-total" style="font-size: 20px; font-weight: 800; margin-left: 8px; color: var(--ink);">$0.00</span>
               </div>
               <button class="btn btn-secondary btn-sm" onclick="saveLineEdits()"><i class="fa-solid fa-floppy-disk"></i> Save Corrections</button>
             </div>
@@ -568,16 +569,16 @@
             </div>
           </div>
 
-          <div id="match-summary-banner" style="margin-bottom: 20px; padding: 16px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: space-between; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3);">
+          <div id="match-summary-banner" style="margin-bottom: 20px; padding: 16px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: space-between; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--line);">
             <div style="display: flex; align-items: center; gap: 12px;">
-              <i id="match-summary-icon" class="fa-solid fa-circle-check" style="font-size: 24px; color: #059669;"></i>
+              <i id="match-summary-icon" class="fa-solid fa-hourglass-start" style="font-size: 24px; color: var(--text-muted);"></i>
               <div>
-                <h4 id="match-summary-title" style="font-size: 15px; font-weight: 800; color: #047857;">Reconciliation Status: MATCHED_EXACT</h4>
-                <p id="match-summary-desc" style="font-size: 12.5px; color: var(--text-secondary);">All lines match contract price and warehouse receiving counts within tolerance.</p>
+                <h4 id="match-summary-title" style="font-size: 15px; font-weight: 800; color: var(--ink);">Reconciliation Status: NO_INVOICE_SELECTED</h4>
+                <p id="match-summary-desc" style="font-size: 12.5px; color: var(--text-secondary);">Select an invoice from the dropdown above to inspect 3-way reconciliation.</p>
               </div>
             </div>
             <div id="match-actions-area">
-              <button class="btn btn-primary btn-sm"><i class="fa-solid fa-check"></i> Authorize Payment</button>
+              <button class="btn btn-secondary btn-sm" disabled><i class="fa-solid fa-scale-balanced"></i> Select Invoice</button>
             </div>
           </div>
 
@@ -604,7 +605,7 @@
                 </tr>
               </thead>
               <tbody id="match-comparison-tbody">
-                <!-- Dynamically populated 3-way rows -->
+                <tr><td colspan="9" style="text-align: center; color: var(--text-muted); padding: 24px;">No invoice selected. Choose an invoice to inspect 3-way reconciliation.</td></tr>
               </tbody>
             </table>
           </div>
@@ -721,7 +722,7 @@
           <div class="form-group" style="margin-bottom: 20px;">
             <label class="form-label">Select Open Purchase Order:</label>
             <select id="quick-receive-po-select" class="form-select" onchange="onSelectPOForReceiving(this.value)">
-              <!-- Options populated dynamically -->
+              <option value="">-- No Open Purchase Orders --</option>
             </select>
           </div>
 
@@ -738,7 +739,7 @@
                 </tr>
               </thead>
               <tbody id="quick-receive-tbody">
-                <!-- Populated based on selected PO -->
+                <tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 20px;">No open purchase orders to receive against.</td></tr>
               </tbody>
             </table>
           </div>
@@ -756,7 +757,7 @@
           <div class="panel-header">
             <div>
               <h3 class="panel-title">Vendor Directory & Trust Index</h3>
-              <p style="color: var(--text-muted); font-size: 13px;">Supplier details, stored demo scores and custom matching tolerances.</p>
+              <p style="color: var(--text-muted); font-size: 13px;">Supplier details, stored scores and custom matching tolerances.</p>
             </div>
           </div>
 
@@ -775,7 +776,7 @@
                 </tr>
               </thead>
               <tbody id="vendors-tbody">
-                <!-- Dynamically populated -->
+                <tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 20px;">No vendors registered yet.</td></tr>
               </tbody>
             </table>
           </div>

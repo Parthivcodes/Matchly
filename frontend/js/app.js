@@ -94,6 +94,13 @@ async function refreshDashboard() {
       document.getElementById('funnel-matched-count').textContent = kpis.auto_matched_count;
       document.getElementById('funnel-tolerance-count').textContent = kpis.matched_tolerance_count;
       document.getElementById('funnel-exception-count').textContent = kpis.exception_count;
+
+      const aging02 = document.getElementById('aging-0-2');
+      if (aging02) aging02.textContent = `${kpis.aging_0_to_2_days || 0} Invoices`;
+      const aging37 = document.getElementById('aging-3-7');
+      if (aging37) aging37.textContent = `${kpis.aging_3_to_7_days || 0} Invoices`;
+      const agingOver7 = document.getElementById('aging-over-7');
+      if (agingOver7) agingOver7.textContent = `${kpis.aging_over_7_days || 0} Invoices`;
     }
 
     // 1B. Fetch Invoices list
@@ -461,8 +468,15 @@ async function loadOpenPOsForWarehouse() {
     if (res.ok) {
       currentPOs = await res.json();
       const select = document.getElementById('quick-receive-po-select');
-      select.innerHTML = '<option value="">-- Select Open PO --</option>';
+      const tbody = document.getElementById('quick-receive-tbody');
 
+      if (!currentPOs || currentPOs.length === 0) {
+        select.innerHTML = '<option value="">-- No Open Purchase Orders --</option>';
+        if (tbody) tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 20px;">No open purchase orders to receive against.</td></tr>';
+        return;
+      }
+
+      select.innerHTML = '<option value="">-- Select Open PO --</option>';
       currentPOs.forEach(po => {
         const opt = document.createElement('option');
         opt.value = po.id;
@@ -471,10 +485,8 @@ async function loadOpenPOsForWarehouse() {
       });
 
       if (currentPOs.length > 0) {
-        // Select the Titan Steel PO (PO-2026-002) which currently has a backorder
-        const titanPO = currentPOs.find(p => p.po_number === 'PO-2026-002') || currentPOs[0];
-        select.value = titanPO.id;
-        onSelectPOForReceiving(titanPO.id);
+        select.value = currentPOs[0].id;
+        onSelectPOForReceiving(currentPOs[0].id);
       }
     }
   } catch (err) {
@@ -494,8 +506,8 @@ function onSelectPOForReceiving(poId) {
     tr.innerHTML = `
       <td><strong>${l.item_code}</strong></td>
       <td>${l.description}</td>
-      <td>${l.ordered_qty} ${l.uom}</td>
-      <td><input type="number" id="receive-qty-${idx}" data-line-id="${l.id}" data-item-code="${l.item_code}" class="form-input" value="30" style="width: 100px; padding: 6px 10px;"></td>
+      <td>${l.ordered_qty} ${l.uom || 'units'}</td>
+      <td><input type="number" id="receive-qty-${idx}" data-line-id="${l.id}" data-item-code="${l.item_code}" class="form-input" value="${l.ordered_qty || 0}" style="width: 100px; padding: 6px 10px;"></td>
       <td><input type="number" id="reject-qty-${idx}" class="form-input" value="0" style="width: 80px; padding: 6px 10px;"></td>
       <td><input type="text" id="notes-${idx}" class="form-input" placeholder="Dock inspection OK" style="font-size: 13px; padding: 6px 10px;"></td>
     `;
@@ -533,8 +545,8 @@ async function submitQuickReceive() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         po_id: poId,
-        warehouse_location: 'MAIN DOCK 4',
-        received_by: 'Carlos Mendoza',
+        warehouse_location: 'MAIN DOCK',
+        received_by: 'Dock Staff',
         items: items
       })
     });
@@ -570,9 +582,14 @@ async function loadVendorScorecards() {
       const tbody = document.getElementById('vendors-tbody');
       tbody.innerHTML = '';
 
+      if (!vendors || vendors.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 20px;">No vendors registered yet.</td></tr>';
+        return;
+      }
+
       vendors.forEach(v => {
         const tr = document.createElement('tr');
-        const score = v.trust_score;
+        const score = v.trust_score || 90;
         let scoreClass = 'highlight-green';
         let tierBadge = '<span class="badge badge-matched">Tier A (Preferred)</span>';
 
@@ -584,14 +601,14 @@ async function loadVendorScorecards() {
           tierBadge = '<span class="badge badge-tolerance">Tier B (Standard)</span>';
         }
 
-        const priceTol = v.vendor_code === 'VEND-TITAN' ? '0.0%' : '1.5%';
-        const qtyTol = v.vendor_code === 'VEND-TITAN' ? '2.0% (Steel weight)' : '0.0%';
+        const priceTol = v.price_tolerance_pct !== undefined ? `${v.price_tolerance_pct}%` : '1.5%';
+        const qtyTol = v.qty_tolerance_pct !== undefined ? `${v.qty_tolerance_pct}%` : '0.0%';
 
         tr.innerHTML = `
-          <td><strong>${v.vendor_code}</strong></td>
+          <td><strong>${v.vendor_code || 'VEND'}</strong></td>
           <td>${v.name}</td>
           <td>${v.tax_id || 'N/A'}</td>
-          <td>Net ${v.payment_terms_days} Days</td>
+          <td>Net ${v.payment_terms_days || 30} Days</td>
           <td><span class="${scoreClass}" style="font-size: 16px; font-weight: 800;">${score.toFixed(1)} / 100</span></td>
           <td>${priceTol}</td>
           <td>${qtyTol}</td>
@@ -602,6 +619,31 @@ async function loadVendorScorecards() {
     }
   } catch (err) {
     console.error('Error loading vendors:', err);
+  }
+}
+
+async function clearDatabaseData() {
+  if (!confirm('Are you sure you want to purge all records (invoices, POs, vendors, exceptions) from the database? This cannot be undone.')) {
+    return;
+  }
+  try {
+    const res = await fetch(`${API_BASE}/database/clear`, { method: 'POST' });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      alert('Database successfully cleared! All static and demo records have been removed.');
+      currentInvoices = [];
+      currentExceptions = [];
+      currentPOs = [];
+      refreshDashboard();
+      loadVendorScorecards();
+      loadOpenPOsForWarehouse();
+      loadExceptions();
+    } else {
+      alert('Failed to clear database: ' + (data.error || 'Server error'));
+    }
+  } catch (err) {
+    console.error('Error clearing database:', err);
+    alert('Failed to clear database: ' + err.message);
   }
 }
 

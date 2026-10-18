@@ -35,8 +35,8 @@ router.get('/dashboard', async (req, res) => {
       money_protected_usd: Number(moneySaved.toFixed(2)),
       open_exceptions_count: openExceptions,
       sla_breaching_count: slaBreaching,
-      aging_0_to_2_days: Math.max(0, totalInvoices - 2),
-      aging_3_to_7_days: 2,
+      aging_0_to_2_days: totalInvoices,
+      aging_3_to_7_days: 0,
       aging_over_7_days: 0
     });
   } catch (err) {
