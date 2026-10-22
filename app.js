@@ -51,6 +51,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(frontendDir, 'index.html'));
 });
 
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(frontendDir, 'login.html'));
+});
+
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(frontendDir, 'dashboard.html'));
 });

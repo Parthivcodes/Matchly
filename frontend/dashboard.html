@@ -57,12 +57,15 @@
       </button></li>
     </ul>
 
-    <div class="user-badge">
-      <div class="user-avatar">FW</div>
+    <div class="user-badge" id="current-user-badge">
+      <div class="user-avatar" id="current-user-avatar">PN</div>
       <div class="user-info">
-        <div class="user-name">Finance Workspace</div>
-        <div class="user-role">Workspace Member</div>
+        <div class="user-name" id="current-user-name">Parthiv Nanavati</div>
+        <div class="user-role" id="current-user-role">ADMIN</div>
       </div>
+      <button type="button" class="btn-logout" id="btn-logout" title="Sign out" aria-label="Sign out" onclick="handleLogout()">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </button>
     </div>
   </aside>
 

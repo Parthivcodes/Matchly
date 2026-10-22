@@ -8,7 +8,7 @@ test('Vercel entry serves pages without a database and fails API requests prompt
   await new Promise(resolve => server.once('listening', resolve));
   const base = `http://127.0.0.1:${server.address().port}`;
   try {
-    for (const route of ['/', '/dashboard', '/static/css/style.css', '/static/js/app.js']) {
+    for (const route of ['/', '/login', '/dashboard', '/static/css/style.css', '/static/js/app.js']) {
       const response = await fetch(base + route);
       assert.equal(response.status, 200, route);
       assert.ok((await response.text()).length > 100, route);
