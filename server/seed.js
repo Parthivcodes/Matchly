@@ -53,10 +53,10 @@ async function seedMernDatabase() {
     },
     {
       tenantId: tenant._id,
-      email: 'david.admin@apexsupply.com',
-      passwordHash: 'argon2_mock_hash',
-      firstName: 'David',
-      lastName: 'Chen',
+      email: 'parthivnanavatimatchly7@gmail.com',
+      passwordHash: 'Parthiv@matchly*54321',
+      firstName: 'Parthiv',
+      lastName: 'Nanavati',
       role: 'ADMIN'
     }
   ]);

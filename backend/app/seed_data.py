@@ -35,10 +35,10 @@ def seed_database():
     admin_user = User(
         id="u-admin-01",
         tenant_id=tenant.id,
-        email="david.admin@apexsupply.com",
-        password_hash="mock_hash_argon2",
-        first_name="David",
-        last_name="Chen",
+        email="parthivnanavatimatchly7@gmail.com",
+        password_hash="Parthiv@matchly*54321",
+        first_name="Parthiv",
+        last_name="Nanavati",
         role="ADMIN"
     )
     clerk_user = User(
